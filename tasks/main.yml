@@ -26,7 +26,7 @@
     key: "{{ item.1 }}"
     state: absent
   with_subelements:
-    - "{{ admin_users }}"
+    - "{{ users_accounts }}"
     - keys.disabled
     - flags:
       skip_missing: True
