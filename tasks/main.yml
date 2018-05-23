@@ -1,0 +1,33 @@
+---
+- name: Add/Remove user accounts.
+  user:
+    comment: "{{ item.name }}"
+    name: "{{ item.username }}"
+    groups: "{{ item.groups | default(omit) }}"
+    shell: "{{ item.shell | default('/usr/bin/bash') }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ user_accounts }}"
+  when: user_accounts is defined and item.username is defined
+
+- name: Add users ssh keys
+  authorized_key:
+    user: "{{ item.0.username }}"
+    key: "{{ item.1 }}"
+  with_subelements:
+    - "{{ user_accounts }}"
+    - keys.active
+    - flags:
+      skip_missing: True
+  when: user_accounts is defined and item.0.state != 'absent'
+
+- name: Remove users ssh keys
+  authorized_key:
+    user: "{{ item.0.username }}"
+    key: "{{ item.1 }}"
+    state: absent
+  with_subelements:
+    - "{{ admin_users }}"
+    - keys.disabled
+    - flags:
+      skip_missing: True
+  when: user_accounts is defined and item
