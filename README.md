@@ -51,5 +51,5 @@ MIT
 Author Information
 ------------------
 
-This role was created in 2018 by Keith Boyd-Carter Yale University Library IT
+This role was created in 2018 by Keith Carter
 System Programmer
