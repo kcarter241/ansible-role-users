@@ -52,4 +52,3 @@ Author Information
 ------------------
 
 This role was created in 2018 by Keith Carter
-System Programmer
