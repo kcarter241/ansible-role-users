@@ -11,8 +11,6 @@ None.
 Role Variables
 --------------
 
-::
-
   user_accounts:
     - name: "John Doe"
       username: jdoe
@@ -32,8 +30,6 @@ None
 
 Example Playbook
 ----------------
-
-::
 
   - hosts: all
     roles:
